@@ -1,10 +1,12 @@
-/*
+
+  /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package lfsr;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -16,7 +18,7 @@ public class Lfsr {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         // TODO code application logic here
         
         Scanner skaner = new Scanner(System.in);
@@ -28,6 +30,11 @@ public class Lfsr {
         System.out.println("wielomian = " + p + " ");
         lfsrCode lfsr = new lfsrCode();
         lfsr.makeLfsr(z, p);
+        System.out.println("Podaj wiadomość");
+        String m = skaner.next();
+        StreamCipther streamCipth = new StreamCipther();
+        streamCipth.makeStreamCipther(z, p, m);
+        
         
         
     }

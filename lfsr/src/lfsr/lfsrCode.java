@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lfsr;
 
+package lfsr;
+import java.util.Vector;
 /**
  *
  * @author dell
@@ -23,24 +24,30 @@ public class lfsrCode {
         String[] tabAll = new String[(n*n)-1];
         String tmp = new String();
         String tmp2 = new String();
+        Integer tmp3 = 0;
+        Vector<Integer> vect = new Vector();
 
         for (int i = 0; i < z.length() ; i++) {
             tabz[i] = z.charAt(i) + "";
             tabp[i] = p.charAt(i) + "";
-            tabzPast[i] = z.charAt(i) + "";
-            System.out.println(tabz[i]);
         }
-
+        
+        for (int i = 0; i < p.length() ; i++) {
+            if(Integer.parseInt(tabp[i])==1){
+                vect.add(i);
+            }
+        }
+        
         for (int i = 0; i < (n*n)-1; i++) {
             for (int j = 0; j < n - 1; j++) {
                 tmp += tabz[j];
-                //tmpt[j] = tmp.charAt(j)+"";
             }
-            //System.out.println("tmp: " +tmp);
-            System.out.println("int0: " + (Integer.parseInt(tabzPast[0]) +" int1: " + Integer.parseInt(tabzPast[1]) + " int2: " + Integer.parseInt(tabzPast[2]) +" int3:  " + Integer.parseInt(tabzPast[3])));
-            System.out.println("tmp: " + tmp);
-            tmp2 = ((Integer.parseInt(tabz[0]) + Integer.parseInt(tabz[3]))%2) + tmp;
-            System.out.println("tmp2: " + tmp2);
+
+            tmp3 = 0;
+            for (Integer vect1 : vect) {
+                tmp3 += Integer.parseInt(tabz[vect1]);
+            }
+            tmp2 = ((tmp3)%2) + tmp;
             tabAll[i] = tmp2;
             
             for (int m = 0; m < n ; m++) {
